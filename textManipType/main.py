@@ -3,14 +3,23 @@ import pyautogui
 import time
 
 
-# f = open("typing-data.txt")
-# line_list = f.readlines
+# college = open("colleges.txt", "r")
 
-# for x in line_list:
+# college_list = []
+# for line in college:
+#   stripped_line = line.strip()
+#   college_list.append(stripped_line)
 
-def f(x):
+
+# def location(h):
+#     islocation = any(college_location in h for college_location in college_list)
+#     print(islocation)
+
+def month(x):
     y = x.split()
     # print(y[0])
+    if len(y) == 0:
+        return
     match y[0]:
         case 'Sep':
             return pyautogui.press('down')
@@ -37,29 +46,58 @@ def f(x):
         case _:
             return 0 
 
-def func(x):
+def day(x):
     y = x.split()
-    print(y[1])
-    count = y[1]
-    done = pyautogui.press('down', presses = count)
-    print (done)
-    return done
+    if len(y) == 0:
+        return
+    y[1] = int(y[1])
+    for _ in range(y[1]-1):
+        pyautogui.press('down')
+    return 
 
 
 time.sleep(5)
 
 print ("start")
 
+# final = []
+
 for line in open("typing-data.txt", "r"):
 
-    f(line)
+    # location(line)
+    month(line)
+    pyautogui.press("tab")
+    day(line)
     pyautogui.press("tab")
 
-    func(line)
+    
+    # if final in college_list:
+    #     print("yes")
 
-    # pyautogui.typewrite(line)
-     
-    pyautogui.press("enter")
 
+    for word in line.split():
+        if len(word) == 3 or len(word) == 1:
+            pass
+        elif word in ["(Mon)", "(Tue)", "(Wed)", "(Thu)", "(Fri)", "(Sat)", "(Sun)", "Home", "Away"]:
+            pass
+        elif ":" in word:
+            pass
+        elif "pm" in word:
+            pass
+        elif "am" in word:
+            pass
+        elif word.isdigit():
+            pass
+
+            # this gets to the college
+
+        else:
+            pyautogui.typewrite(word  + " ")
+
+    pyautogui.press("enter", presses=2)
+
+    
+
+           
 print ("done")
 
