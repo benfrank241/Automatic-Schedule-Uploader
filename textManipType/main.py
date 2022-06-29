@@ -3,18 +3,6 @@ import pyautogui
 import time
 
 
-# college = open("colleges.txt", "r")
-
-# college_list = []
-# for line in college:
-#   stripped_line = line.strip()
-#   college_list.append(stripped_line)
-
-
-# def location(h):
-#     islocation = any(college_location in h for college_location in college_list)
-#     print(islocation)
-
 def month(x):
     y = x.split()
     # print(y[0])
@@ -39,7 +27,7 @@ def month(x):
             return pyautogui.press('down', presses = 8)
         case 'May':
             return pyautogui.press('down', presses = 9)
-        case 'June':
+        case 'Jun':
             return pyautogui.press('down', presses = 10)
         case 'Jul':
             return pyautogui.press('down', presses = 11)
@@ -83,33 +71,60 @@ def hour(x):
         print ("down")
     return 
 
+print ("Five seconds to click correct entry point")
 
 time.sleep(5)
 
 print ("start")
 
-# final = []
 
 for line in open("typing-data.txt", "r"):
 
-    # location(line)
+    
     month(line)
     pyautogui.press("tab")
     day(line)
-    pyautogui.press("tab", presses=3)
-    hour(line)
+    pyautogui.press("tab")
+    # pyautogui.press("tab", presses=3)
+    # hour(line)
+
+    # pyautogui.press("tab", presses=2)
+    # time.sleep(0.5)
+    # pyautogui.press("tab", presses=2)
+    # time.sleep(0.5)
+    # pyautogui.press("tab", presses=2)
+    # time.sleep(0.5)
+    # pyautogui.press("tab", presses=2)
+    # time.sleep(0.5)
+    # pyautogui.press("tab", presses=2)
+    # time.sleep(0.5)
+    # pyautogui.press("tab")
+    # time.sleep(0.5)
+    # pyautogui.press("tab")
+    # time.sleep(0.5)
+    # pyautogui.press("tab")
+    # time.sleep(0.5)
+    # pyautogui.press("tab")
+    # time.sleep(0.5)
+    # pyautogui.press("tab")
 
 
     
     for word in line.split():
         
-        if len(word) == 3 or len(word) == 1:
+        if len(word) == 1:
+            pass
+        elif word in ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]:
             pass
         elif word in ["Home", "Away"]:
             pass
         elif "pm" in word:
             pass
         elif "am" in word:
+            pass
+        elif "PM" in word:
+            pass
+        elif "AM" in word:
             pass
         elif word.isdigit():
             pass
@@ -121,16 +136,25 @@ for line in open("typing-data.txt", "r"):
             pass
         elif ":" in word:
             pass
+        elif "," in word:
+            pyautogui.press("tab")
+            pyautogui.typewrite(word  + " ")
 
             # this gets to the college
 
         else:
-            # pyautogui.typewrite(word  + " ")
-            # print("pause")
-            # time.sleep(1)
+            pyautogui.typewrite(word  + " ")
+            print("pause")
+            time.sleep(1)
             pass
 
+    pyautogui.press("tab")
+    hour(line)
+
+
+    pyautogui.press("tab")
     pyautogui.press("enter")
+    print("Line done, click on correct entrypoint")
     time.sleep(3)
     
 
