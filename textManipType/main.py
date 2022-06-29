@@ -5,7 +5,7 @@ import time
 
 def month(x):
     y = x.split()
-    # print(y[0])
+    print(y[0])
     if len(y) == 0:
         return
     match y[0]:
@@ -78,36 +78,15 @@ time.sleep(5)
 print ("start")
 
 
-for line in open("typing-data.txt", "r"):
+for line in open("typing-data.txt", "r"): #NEED TO SKIP EVERY SECOND LINE
 
+    if line =="":
+        pass
     
     month(line)
     pyautogui.press("tab")
     day(line)
     pyautogui.press("tab")
-    # pyautogui.press("tab", presses=3)
-    # hour(line)
-
-    # pyautogui.press("tab", presses=2)
-    # time.sleep(0.5)
-    # pyautogui.press("tab", presses=2)
-    # time.sleep(0.5)
-    # pyautogui.press("tab", presses=2)
-    # time.sleep(0.5)
-    # pyautogui.press("tab", presses=2)
-    # time.sleep(0.5)
-    # pyautogui.press("tab", presses=2)
-    # time.sleep(0.5)
-    # pyautogui.press("tab")
-    # time.sleep(0.5)
-    # pyautogui.press("tab")
-    # time.sleep(0.5)
-    # pyautogui.press("tab")
-    # time.sleep(0.5)
-    # pyautogui.press("tab")
-    # time.sleep(0.5)
-    # pyautogui.press("tab")
-
 
     
     for word in line.split():
@@ -155,7 +134,7 @@ for line in open("typing-data.txt", "r"):
     pyautogui.press("tab")
     pyautogui.press("enter")
     print("Line done, click on correct entrypoint")
-    time.sleep(3)
+    time.sleep(10)
     
 
            
