@@ -4,6 +4,8 @@ import time
 
 
 def month(x):
+    if len(x) == 0:
+        return
     y = x.split()
     print(y[0])
     if len(y) == 0:
@@ -35,6 +37,8 @@ def month(x):
             return 0 
 
 def day(x):
+    if len(x) == 0:
+        return
     y = x.split()
     if len(y) == 0:
         return
@@ -44,6 +48,8 @@ def day(x):
     return 
 
 def hour(x):
+    if len(x) == 0:
+        return
     y = x.split()
     if len(y) == 0:
         return
@@ -80,8 +86,8 @@ print ("start")
 
 for line in open("typing-data.txt", "r"): #NEED TO SKIP EVERY SECOND LINE
 
-    if line =="":
-        pass
+    if len(line) ==0:
+        continue
     
     month(line)
     pyautogui.press("tab")
