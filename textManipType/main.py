@@ -55,6 +55,34 @@ def day(x):
         pyautogui.press('down')
     return 
 
+def hour(x):
+    y = x.split()
+    if len(y) == 0:
+        return
+    if y == 'TBD': #TBD CASE, might need to hit tab
+        return
+    print (y[3])
+    time = y[3].split(":")
+    time[0] = int(time[0])
+    print (time[0])
+    for _ in range(time[0]-1):
+        pyautogui.press('down')
+        print ("#")
+    print (time[1])
+    pyautogui.press("tab")
+    time[1] = int(time[1])
+    div = int(time[1]/5)
+    for _ in range(div):
+        pyautogui.press('down')
+        print ("#")
+    pyautogui.press("tab")
+    twelve = y[4]
+    print(twelve)
+    if twelve == 'pm' or 'PM':
+        pyautogui.press('down')
+        print ("down")
+    return 
+
 
 time.sleep(5)
 
@@ -68,19 +96,16 @@ for line in open("typing-data.txt", "r"):
     month(line)
     pyautogui.press("tab")
     day(line)
-    pyautogui.press("tab")
+    pyautogui.press("tab", presses=3)
+    hour(line)
+
 
     
-    # if final in college_list:
-    #     print("yes")
-
-
     for word in line.split():
+        
         if len(word) == 3 or len(word) == 1:
             pass
-        elif word in ["(Mon)", "(Tue)", "(Wed)", "(Thu)", "(Fri)", "(Sat)", "(Sun)", "Home", "Away"]:
-            pass
-        elif ":" in word:
+        elif word in ["Home", "Away"]:
             pass
         elif "pm" in word:
             pass
@@ -88,14 +113,25 @@ for line in open("typing-data.txt", "r"):
             pass
         elif word.isdigit():
             pass
+        elif "(" in word:
+            pass
+        elif ")" in word:
+            pass
+        elif "TBD" in word:
+            pass
+        elif ":" in word:
+            pass
 
             # this gets to the college
 
         else:
-            pyautogui.typewrite(word  + " ")
+            # pyautogui.typewrite(word  + " ")
+            # print("pause")
+            # time.sleep(1)
+            pass
 
-    pyautogui.press("enter", presses=2)
-
+    pyautogui.press("enter")
+    time.sleep(3)
     
 
            
