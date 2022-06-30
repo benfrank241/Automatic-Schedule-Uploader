@@ -4,10 +4,7 @@ import time
 
 
 def month(x):
-    if len(x) == 0:
-        return
     y = x.split()
-    print(y[0])
     if len(y) == 0:
         return
     match y[0]:
@@ -53,28 +50,31 @@ def hour(x):
     y = x.split()
     if len(y) == 0:
         return
-    if y == 'TBD': #TBD CASE, might need to hit tab
+    if y[3] == 'TBD': #TBD CASE, might need to hit tab
         return
-    print (y[3])
+    # print (y[3])
     time = y[3].split(":")
     time[0] = int(time[0])
-    print (time[0])
+    # print (time[0])
     for _ in range(time[0]-1):
         pyautogui.press('down')
-        print ("#")
-    print (time[1])
+        # print ("#")
+    # print (time[1])
     pyautogui.press("tab")
     time[1] = int(time[1])
     div = int(time[1]/5)
     for _ in range(div):
         pyautogui.press('down')
-        print ("#")
+        # print ("#")
     pyautogui.press("tab")
     twelve = y[4]
-    print(twelve)
-    if twelve == 'pm' or 'PM':
+    # print(twelve)
+    if twelve == "PM":
         pyautogui.press('down')
-        print ("down")
+        # print ("down")
+    if twelve == "pm":
+        pyautogui.press('down')
+        # print ("down")
     return 
 
 print ("Five seconds to click correct entry point")
@@ -83,12 +83,16 @@ time.sleep(5)
 
 print ("start")
 
+check = 0
 
-for line in open("typing-data.txt", "r"): #NEED TO SKIP EVERY SECOND LINE
+for line in open("typing-data.txt", "r"):
 
-    if len(line) ==0:
+    print("begining inputs")
+
+    if line == "\n":
+        # print("skip")
         continue
-    
+        
     month(line)
     pyautogui.press("tab")
     day(line)
@@ -101,15 +105,9 @@ for line in open("typing-data.txt", "r"): #NEED TO SKIP EVERY SECOND LINE
             pass
         elif word in ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]:
             pass
-        elif word in ["Home", "Away"]:
+        elif word in ["Home", "Away", "Neutral"]:
             pass
-        elif "pm" in word:
-            pass
-        elif "am" in word:
-            pass
-        elif "PM" in word:
-            pass
-        elif "AM" in word:
+        elif word in ["am", "pm", "Am","Pm", "AM", "PM", "Prats"]:
             pass
         elif word.isdigit():
             pass
@@ -118,19 +116,27 @@ for line in open("typing-data.txt", "r"): #NEED TO SKIP EVERY SECOND LINE
         elif ")" in word:
             pass
         elif "TBD" in word:
-            pass
+            pyautogui.press("tab")
+            pyautogui.typewrite(word)
         elif ":" in word:
             pass
-        elif "," in word:
+        elif word in ["St.", "Mt.", "River", "Cedar", "Rock", "Mt."]:
             pyautogui.press("tab")
             pyautogui.typewrite(word  + " ")
+            check = 1
+        elif "," in word and check == 0:
+            pyautogui.press("tab")
+            pyautogui.typewrite(word  + " ")
+        elif "," in word and check == 1:
+            pyautogui.typewrite(word  + " ")
+            check = 0
 
             # this gets to the college
 
         else:
             pyautogui.typewrite(word  + " ")
-            print("pause")
-            time.sleep(1)
+            # print("pause")
+            # time.sleep(1)
             pass
 
     pyautogui.press("tab")
@@ -140,9 +146,9 @@ for line in open("typing-data.txt", "r"): #NEED TO SKIP EVERY SECOND LINE
     pyautogui.press("tab")
     pyautogui.press("enter")
     print("Line done, click on correct entrypoint")
-    time.sleep(10)
+    time.sleep(8)
     
 
            
-print ("done")
+print ("Schedule Complete")
 

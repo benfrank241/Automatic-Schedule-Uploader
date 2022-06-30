@@ -1,0 +1,20 @@
+https://streamable.com/m4vv7m - Video Demo
+
+1. Copy "Text" schedule to typing-data.txt file
+
+2. Check for any spacing inconsistencies or errors in the schedule.
+    The most common ones I acounted for in the code but look out for 2:00pm instead of 2:00 pm.
+    Fix those.
+
+3. Change only the time TBD to 1:00 pm and add :00 to the lazy times
+
+4. Run the code and select the Aug box on the site.
+
+5. Wait for the next match and select Aug again.
+
+6. Repeat until done
+
+7. There may be times where the code doesn't sumbit - pay attention as u might have to insert manually quickly in order to avoid the script from bugging.
+
+Ban Lake Forest College. Consistency in schedules.
+
